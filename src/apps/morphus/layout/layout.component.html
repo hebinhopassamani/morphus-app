@@ -1,6 +1,14 @@
-<div className="morphus-container">
-  <mpx-sidebar />
-  <mpx-content>
-    <mpx-topbar />
-  </mpx-content>
-</div>
+<mat-sidenav-container class="overflow-clip" [class.scheme-dark]="sidebarService.scheme() === 'dark'">
+  <mat-sidenav class="w-60 border-none" [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" [disableClose]="!isMobile()" fixedInViewport #sidenav>
+    <mpx-sidebar />
+  </mat-sidenav>
+  <mat-sidenav-content class="min-w-0 overflow-clip bg-transparent lg:h-dvh lg:p-2" [class.scheme-light]="!theming.isDark()">
+    <div
+      class="flex flex-auto flex-col bg-white shadow-xs lg:overflow-y-auto lg:rounded-lg lg:ring-1 lg:ring-neutral-a3 dark:bg-neutral-2"
+      cdkScrollable
+      buiScrollViewport>
+      <mpx-topbar (menuToggle)="sidenav.toggle()" />
+      <mpx-content />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

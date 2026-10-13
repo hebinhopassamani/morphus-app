@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterOutlet],
   selector: 'sec-content',
+  host: { class: 'flex flex-auto flex-col' },
   styleUrl: './content.component.css',
   templateUrl: './content.component.html',
 })
