@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'sec-signin',
   imports: [FormField, FormRoot, MatButton, MatCard, MatCardContent, MatCheckbox, MatIcon, MatError, MatFormField, MatInput, MatLabel, RouterLink],
+  host: { class: 'flex w-full flex-auto flex-col items-center justify-center p-6' },
   templateUrl: './signin.component.html',
 })
 export class SigninComponent {
