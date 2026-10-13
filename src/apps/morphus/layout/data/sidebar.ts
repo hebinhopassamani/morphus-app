@@ -1,5 +1,5 @@
 import { inject, Service, signal } from '@angular/core';
-import { LocalStorage } from '@/app/core/local-storage';
+import { LocalStorage } from '@/apps/core/local-storage';
 
 const STORAGE_KEY = 'sidebarScheme';
 

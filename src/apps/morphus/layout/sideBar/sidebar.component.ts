@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { BuiSidebar, BuiSidebarBody, BuiSidebarHeader } from '@/app/ui/sidebar';
+import { BuiSidebar, BuiSidebarBody, BuiSidebarHeader } from '@/apps/ui/sidebar';
 
 @Component({
   imports: [MatIcon, BuiSidebar, BuiSidebarHeader, BuiSidebarBody],

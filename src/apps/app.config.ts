@@ -5,13 +5,13 @@ import { MAT_PROGRESS_SPINNER_DEFAULT_OPTIONS } from '@angular/material/progress
 import { MAT_TABS_CONFIG } from '@angular/material/tabs';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { PreloadAllModules, provideRouter, withComponentInputBinding, withInMemoryScrolling, withPreloading } from '@angular/router';
-import { provideIcons } from '@/app/core/icons';
-import { provideLocalStorage } from '@/app/core/local-storage';
-import { provideMedia } from '@/app/core/media';
-import { provideMockServer } from '@/app/core/mock-server';
-import { provideTheming } from '@/app/core/theming';
-import { provideViewportScroller } from '@/app/core/viewport-scroller';
-import { provideWindow } from '@/app/core/window';
+import { provideIcons } from '@/apps/core/icons';
+import { provideLocalStorage } from '@/apps/core/local-storage';
+import { provideMedia } from '@/apps/core/media';
+import { provideMockServer } from '@/apps/core/mock-server';
+import { provideTheming } from '@/apps/core/theming';
+import { provideViewportScroller } from '@/apps/core/viewport-scroller';
+import { provideWindow } from '@/apps/core/window';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {

@@ -1,7 +1,7 @@
 import { Component, computed, inject, output } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { Theming } from '@/app/core/theming';
+import { Theming } from '@/apps/core/theming';
 
 @Component({
   imports: [MatIconButton, MatIcon],
