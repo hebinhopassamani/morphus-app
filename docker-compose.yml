@@ -22,6 +22,27 @@ services:
       - caddy_data:/data
       - caddy_config:/config
 
+  db:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?Defina POSTGRES_USER no arquivo .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no arquivo .env}
+      POSTGRES_DB: ${POSTGRES_DB:?Defina POSTGRES_DB no arquivo .env}
+    # Bound to localhost only: reach it from your machine through an SSH tunnel, never from the internet.
+    ports:
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      # Runs only on the first start, while the data volume is still empty.
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   caddy_data:
   caddy_config:
+  postgres_data:

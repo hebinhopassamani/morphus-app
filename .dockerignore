@@ -9,3 +9,4 @@ dist
 Dockerfile
 docker-compose.yml
 Caddyfile
+db
