@@ -5,6 +5,7 @@ import { MAT_PROGRESS_SPINNER_DEFAULT_OPTIONS } from '@angular/material/progress
 import { MAT_TABS_CONFIG } from '@angular/material/tabs';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { PreloadAllModules, provideRouter, withComponentInputBinding, withInMemoryScrolling, withPreloading } from '@angular/router';
+import { provideAuth } from '@/apps/core/auth';
 import { provideIcons } from '@/apps/core/icons';
 import { provideLocalStorage } from '@/apps/core/local-storage';
 import { provideMedia } from '@/apps/core/media';
@@ -12,6 +13,7 @@ import { provideMockServer } from '@/apps/core/mock-server';
 import { provideTheming } from '@/apps/core/theming';
 import { provideViewportScroller } from '@/apps/core/viewport-scroller';
 import { provideWindow } from '@/apps/core/window';
+import { environment } from '@/environments/environment';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -24,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     { provide: MAT_PROGRESS_SPINNER_DEFAULT_OPTIONS, useValue: { diameter: 32 } },
     { provide: MAT_TABS_CONFIG, useValue: { stretchTabs: false } },
     provideMockServer({ baseURL: 'https://mock.server', delay: 0, logging: { handler: true, bypass: false } }),
+    provideAuth({ ...environment.auth0, errorPath: '/security/signin' }),
     provideIcons(),
     provideLocalStorage(),
     provideMedia(),

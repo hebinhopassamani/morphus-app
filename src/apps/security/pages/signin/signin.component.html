@@ -4,38 +4,17 @@
   <mat-card-content class="flex flex-col items-center">
     <mat-icon class="size-6 text-neutral-12" svgIcon="command" />
     <div class="mt-8 text-4xl font-semibold">Login</div>
+    <p class="mt-4 text-center text-neutral-11">Acesse sua conta para continuar.</p>
 
-    <form class="mt-8 flex w-full flex-col" [formRoot]="signinForm">
-      <div class="flex flex-col gap-y-4">
-        <mat-form-field class="w-full">
-          <mat-label>email</mat-label>
-          <input type="email" matInput [formField]="signinForm.email" />
-          <mat-error>
-            @for (error of signinForm.email().errors(); track error) {
-              {{ error.message }}
-            }
-          </mat-error>
-        </mat-form-field>
+    @if (auth.error(); as error) {
+      <div class="mt-4 w-full rounded-lg bg-error-a3 p-3 text-sm text-error-a11">Não foi possível entrar: {{ error.message }}</div>
+    }
 
-        <mat-form-field class="w-full">
-          <mat-label>senha</mat-label>
-          <input type="password" matInput [formField]="signinForm.password" />
-          <mat-error>
-            @for (error of signinForm.password().errors(); track error) {
-              {{ error.message }}
-            }
-          </mat-error>
-        </mat-form-field>
-      </div>
+    <button class="primary large mt-8 w-full" matButton type="button" [disabled]="auth.isLoading()" (click)="auth.login()">
+      <mat-icon svgIcon="log-in" />
+      Entrar
+    </button>
 
-      <div class="mt-4 flex items-center justify-between">
-        <mat-checkbox [checked]="signinModel().savePassword" (change)="setSavePassword($event.checked)">Salvar a senha</mat-checkbox>
-        <a class="link text-primary-a11 decoration-primary-a11" matButton href="" (click)="$event.preventDefault()">Esqueceu a senha</a>
-      </div>
-
-      <button class="primary large mt-8 w-full" matButton type="submit">Login</button>
-    </form>
-
-    <a class="link mt-8 text-primary-a11 decoration-primary-a11" matButton routerLink="/security/signup">Efetuar o cadastro</a>
+    <a class="link mt-8 text-primary-a11 decoration-primary-a11" matButton href="" (click)="$event.preventDefault(); auth.signup()">Efetuar o cadastro</a>
   </mat-card-content>
 </mat-card>
