@@ -1,0 +1,10 @@
+{
+	"mcpServers": {
+		"hostinger-email": {
+			"url": "https://mcp.mail.hostinger.com/mcp",
+			"headers": {
+				"Authorization": "Bearer mlsn.6edc0c4282a6dc99550cc097ff032e9d76b722510337b78aa6d24606f1d5615b"
+			}
+		}
+	}
+}
