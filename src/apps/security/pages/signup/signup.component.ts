@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Auth } from '@/apps/core/auth';
 
 @Component({
@@ -13,4 +13,19 @@ import { Auth } from '@/apps/core/auth';
 })
 export class SignupComponent {
   protected readonly auth = inject(Auth);
+  private readonly router = inject(Router);
+
+  constructor() {
+    effect(() => {
+      if (this.auth.isLoading() || this.auth.error()) {
+        return;
+      }
+
+      if (this.auth.isAuthenticated()) {
+        this.router.navigateByUrl('/admin');
+      } else {
+        this.auth.signup();
+      }
+    });
+  }
 }
