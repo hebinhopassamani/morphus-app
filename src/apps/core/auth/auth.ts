@@ -18,11 +18,11 @@ export class Auth {
   readonly error = this.auth0 ? toSignal(this.auth0.error$, { initialValue: null }) : signal(null).asReadonly();
 
   login() {
-    this.auth0?.loginWithRedirect();
+    this.auth0?.loginWithRedirect({ appState: { target: '/admin' } });
   }
 
   signup() {
-    this.auth0?.loginWithRedirect({ authorizationParams: { screen_hint: 'signup' } });
+    this.auth0?.loginWithRedirect({ appState: { target: '/admin' }, authorizationParams: { screen_hint: 'signup' } });
   }
 
   logout() {
