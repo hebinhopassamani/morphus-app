@@ -25,8 +25,8 @@ import {
 } from '@angular/material/input';
 import { ClassValue } from 'cn';
 import Color from 'colorjs.io';
-import { LocalStorage } from '../../core/local-storage';
-import { WINDOW } from '../../core/window';
+import { LocalStorage } from '@/apps/core/local-storage';
+import { WINDOW } from '@/apps/core/window';
 import { bui } from '../utils';
 
 // -----------------------------------------------------------------------------
