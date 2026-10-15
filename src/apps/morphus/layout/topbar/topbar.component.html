@@ -9,7 +9,8 @@
   <button matIconButton (click)="toggleScheme()">
     <mat-icon [svgIcon]="isDark() ? 'sun' : 'moon'" />
   </button>
-  <button matIconButton title="Sair" (click)="auth.logout()">
+  <button matButton (click)="auth.logout()">
     <mat-icon svgIcon="log-out" />
+    Sair
   </button>
 </div>

@@ -1,11 +1,11 @@
 import { Component, computed, inject, output } from '@angular/core';
-import { MatIconButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { Auth } from '@/apps/core/auth';
 import { Theming } from '@/apps/core/theming';
 
 @Component({
-  imports: [MatIconButton, MatIcon],
+  imports: [MatButton, MatIconButton, MatIcon],
   selector: 'mpx-topbar',
   styleUrl: './topbar.component.css',
   templateUrl: './topbar.component.html',
