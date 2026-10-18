@@ -9,7 +9,7 @@ export const routes: Routes = [
     component: MorphusLayout,
     children: [
       {
-        path: 'modules',
+        path: 'module',
         component: ModulesComponent,
         canActivate: [authGuard], // Só entra se o Auth0 confirmar que está logado!
       },
