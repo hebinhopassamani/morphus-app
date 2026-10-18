@@ -1,9 +1,15 @@
-export interface SubModules {
-  id: number;
-  Name: string | null;
-  Key: string | null;
-  Description: string | null;
-  System: boolean | null;
-  ModuleId: number | null;
-  CorporationId: number | null;
+import { Corporation } from '@security/entities/Corporations';
+import { Module } from '@security/entities/Modules';
+
+export interface SubModule {
+  id: string;
+  name: string;
+  key: string;
+  system: boolean;
+  moduleId: string;
+  corporationId: string;
+  description?: string;
+
+  module?: Module;
+  corporation?: Corporation;
 }

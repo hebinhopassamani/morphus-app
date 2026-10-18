@@ -1,15 +1,21 @@
-export interface Users {
-  Id: number;
-  Name: string | null;
-  Email: string | null;
-  PasswordHash: string | null;
-  NickName: string | null;
-  Picture: string | null;
-  PhoneNumber: string | null;
-  StatusId: number | null;
-  EmailConfirmed: boolean | null;
-  PhoneConfirmed: boolean | null;
-  TermsConfirmed: boolean | null;
-  Systema: boolean | null;
-  CorporationId: number | null;
+import { Corporation } from '@security/entities/Corporations';
+import { UserStatus } from '@security/entities/UserStatus';
+
+export interface User {
+  id: string;
+  name: string | null; // Mapeia o 'string?' obrigatório do C#
+  email: string | null;
+  emailConfirmed: boolean;
+  phoneConfirmed: boolean;
+  termsConfirmed: boolean;
+  system: boolean;
+  userStatusId: string;
+  corporationId: string;
+  passwordHash?: string;
+  nickName?: string;
+  picture?: string;
+  phoneNumber?: string;
+
+  corporation?: Corporation;
+  userStatus?: UserStatus;
 }

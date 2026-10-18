@@ -1,3 +1,5 @@
+import { Corporation } from '@security/entities/Corporations';
+
 export interface Menu {
   id: number;
   Label: string | null;
@@ -8,4 +10,8 @@ export interface Menu {
   Aplication: string | null;
   MenuId: number | null;
   CorporationId: number | null;
+
+  corporation?: Corporation;
+  parentMenu?: Menu;
+  subMenus?: Menu[];
 }
