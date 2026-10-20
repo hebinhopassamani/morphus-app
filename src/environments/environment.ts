@@ -1,11 +1,11 @@
 export const environment = {
   production: false,
   auth0: {
-    domain: 'login.morphus.site',
+    domain: 'www.morphus.me',
     clientId: 'Og0Iwuw9Z4l3dRC9ZjrZZCNEkXMZUO9n',
-    callbackPath: '/admin',
+    callbackPath: '/login/callback',
     authorizationParams: {
-      audience: 'https://morphus.site', // 🧙‍♂️ A tranca mágica que faltava!
+      audience: 'https://morphus.me', // 🧙‍♂️ A tranca mágica que faltava!
     },
   },
   // 🚀 ADICIONE ESTA LINHA AQUI:

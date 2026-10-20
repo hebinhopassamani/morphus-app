@@ -1,27 +1,46 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, inject, Injector, OnInit } from '@angular/core'; // 🚀 Importado o Injector
+import { toObservable } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { Auth } from '@/apps/core/auth';
+import { Auth } from '@core/auth'; // Se
+import { WINDOW } from '@/apps/core/window';
 
 @Component({
-  selector: 'sec-signin',
-  imports: [MatButton, MatCard, MatCardContent, MatIcon],
-  host: { class: 'flex w-full flex-auto flex-col items-center justify-center p-6' },
+  selector: 'mpx-signin',
   templateUrl: './signin.component.html',
+  imports: [MatButton, MatCard, MatCardContent, MatIcon],
+  standalone: true,
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit {
   protected readonly auth = inject(Auth);
   private readonly router = inject(Router);
 
-  constructor() {
-    // Failed logins land here (`errorPath`), so redirecting again on error would loop.
-    effect(() => {
-      if (this.auth.isLoading() || this.auth.error()) {
+  // 🧙‍♂️ O TRUQUE DE MESTRE: Capturamos o injetor aqui na raiz da classe
+  private readonly injector = inject(Injector);
+
+  ngOnInit() {
+    // Agora podemos chamar o método de monitoramento de forma explícita e limpa!
+    this.monitorarCarregamentoUsuario();
+  }
+
+  // O seu método personalizado e bem estruturado:
+  monitorarCarregamentoUsuario(): void {
+    // Passamos o injector nas opções para liberar o uso do toObservable() em métodos!
+    toObservable(this.auth.isLoading, { injector: this.injector }).subscribe((loading) => {
+      // 1. Trava contra loops enquanto o callback do Auth0 processa a URL
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('code') && urlParams.has('state')) {
         return;
       }
 
+      // 2. Se o Auth0 ainda está varrendo o Local Storage, aguardamos em paz
+      if (loading) {
+        return;
+      }
+
+      // 3. Carregamento finalizado! Tomamos a ação de forma controlada
       if (this.auth.isAuthenticated()) {
         this.router.navigateByUrl('/admin');
       } else {
